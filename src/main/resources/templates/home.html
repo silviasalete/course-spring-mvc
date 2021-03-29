@@ -12,6 +12,18 @@
   </head>
   <body>
    <div class="container">
+   	<div class="jumbotron mb-0">
+   		<h1 class="display-4">My Orders</h1>
+   	</div>
+   	<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
+   		<div class="navbar-nav">
+   			<a class="nav-item nav-link active" href="">All</a>
+   			<a class="nav-item nav-link" href="">Pending</a>
+   			<a class="nav-item nav-link" href="">Approved</a>
+   			<a class="nav-item nav-link" href="">Delivered</a>
+   		</div>
+   		<a href="/order/form"><button class="btn btn-outline-secondary my-2 my-sm-0">New</button></a>
+   	</nav>
     <div th:each="order : ${orders}" class="card" >
 		<div th:text="${order.name}"  class="card-header">Product's name</div>
 		
