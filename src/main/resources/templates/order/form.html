@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head th:replace="~{base :: head}"></head>
+  <body>
+   <div class="container">
+   	<div class="jumbotron mb-0">
+   		<h1 class="display-4">New Orders</h1>
+   	</div>
+   	<div class="card mt-3">
+	    <form th:object="${requestNewOrder}" class="card-body" action="/order/new" method="POST">
+	      <div class="form-group">
+	        <label for="orderName">Order</label>
+	        <input th:field="*{orderName}" th:errorclass="is-invalid" class="form-control" placeholder="Order name">
+	        <small>Enter the order name</small>
+	        <div th:errors="*{orderName}" class="invalid-feedback">Erros of order name</div>
+	      </div>
+	      <div class="form-group">
+	        <label for="orderUrl">URL</label>
+	        <input th:field="*{orderUrl}"  th:errorclass="is-invalid"  class="form-control" placeholder="https://">
+	        <small>Enter the order url</small>
+	        <div th:errors="*{orderUrl}" class="invalid-feedback" >Erros of order name</div>
+	      </div>
+	      <div class="form-group">
+	        <label for="orderImage">Image</label>
+	        <input th:field="*{orderImage}"  th:errorclass="is-invalid"  class="form-control" placeholder="Order image">
+	        <small>Enter the order image</small>
+	        <div th:errors="*{orderImage}" class="invalid-feedback" >Erros of order name</div>
+	      </div>
+	      <div class="form-group">
+	        <label for="orderDescription">Description</label>
+	        <textarea th:field="*{orderDescription}"  th:errorclass="is-invalid"  class="form-control" placeholder="Description"></textarea>
+	        <small>Enter the order description</small>
+	        <div th:errors="*{orderDescription}" class="invalid-feedback" >Erros of order name</div>
+	      </div>
+	      <button class="btn btn-primary" type="submit">Send</button>
+	    </form>
+   </div>
+   </div>
+</body>
+</html>
