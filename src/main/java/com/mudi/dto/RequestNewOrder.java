@@ -3,6 +3,7 @@ package com.mudi.dto;
 import javax.validation.constraints.NotBlank;
 
 import com.mudi.model.Order;
+import com.mudi.model.StatusOrder;
 
 public class RequestNewOrder {
 
@@ -49,6 +50,7 @@ public class RequestNewOrder {
 		order.setUrl(this.getOrderUrl());
 		order.setImage(this.getOrderImage());
 		order.setDescription(this.getOrderDescription());
+		order.setStatus(StatusOrder.PENDING);
 		return order;
 	}
 	

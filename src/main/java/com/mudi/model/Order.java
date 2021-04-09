@@ -1,6 +1,8 @@
 package com.mudi.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +19,9 @@ public class Order {
 	private String image;
 	private String url;
 	private String description;
+	@Enumerated(EnumType.STRING)
+	private StatusOrder status;
+	
 	
 	public String getName() {
 		return name;
@@ -47,5 +52,11 @@ public class Order {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public StatusOrder getStatus() {
+		return status;
+	}
+	public void setStatus(StatusOrder status) {
+		this.status = status;
 	}
 }
