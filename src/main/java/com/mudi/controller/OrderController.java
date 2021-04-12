@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mudi.dto.RequestNewOrder;
-import com.mudi.model.Order;
 import com.mudi.repository.OrderRepository;
 
 @Controller
@@ -28,14 +27,10 @@ public class OrderController {
 
 	@PostMapping("new")
 	public String newOrder(@Validated RequestNewOrder requestNewOrder, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			return "order/form";
-		}
+
+		orderRepository.save(requestNewOrder.toOrder());
 		
-		Order order = requestNewOrder.toOrder();
-		orderRepository.save(order);
-		
-		return "redirect:/home";
+		return bindingResult.hasErrors() == true ? "order/form" : "redirect:/home";
 
 	}
 }

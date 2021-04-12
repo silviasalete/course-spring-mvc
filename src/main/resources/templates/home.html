@@ -9,15 +9,20 @@
    	</div>
    	<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
    		<div class="navbar-nav">
-   			<a class="nav-item nav-link active" href="">All</a>
-   			<a class="nav-item nav-link" href="">Pending</a>
-   			<a class="nav-item nav-link" href="">Approved</a>
-   			<a class="nav-item nav-link" href="">Delivered</a>
+   			<a class="nav-item nav-link " th:classappend="${status} == null ? 'active'" href="/home">All</a>
+   			<a class="nav-item nav-link"  th:classappend="${status} == 'pending'? 'active'" href="/home/pending">Pending</a>
+   			<a class="nav-item nav-link"  th:classappend="${status} == 'approved'? 'active'" href="/home/approved">Approved</a>
+   			<a class="nav-item nav-link"  th:classappend="${status} == 'delivered'? 'active'" href="/home/delivered">Delivered</a>
    		</div>
    		<a href="/order/form"><button class="btn btn-outline-secondary my-2 my-sm-0">New</button></a>
    	</nav>
+   	
     <div th:each="order : ${orders}" class="card mb-3" >
-		<div th:text="${order.name}"  class="card-header">Product's name</div>
+    	<div th:switch="${#strings.toString(order.status)}">    		
+		<div th:case="'PENDING'" th:text="${order.name}" class="card-header" th:classappend="'bg-warning'">Product's name</div>
+		<div th:case="'APPROVED'" th:text="${order.name}" class="card-header" th:classappend="'bg-success'">Product's name</div>
+		<div th:case="'DELIVERED'" th:text="${order.name}" class="card-header" th:classappend="'bg-dark'">Product's name</div>
+    </div>
 		
 		<div class="card-body">
 			<div class="row">
@@ -27,6 +32,7 @@
 						<div class="col-md-7">Delivery date: <span>01/04/2021</span></div>
 					</div>
 					<div>Product</div>
+					
 					<div><input class="form-control" th:value="${order.url}" /></div>
 					
 					<div>Description</div>
